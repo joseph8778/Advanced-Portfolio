@@ -4,6 +4,37 @@
 
 //5gnLbXD5Br8jEL3My
 
+let isModalOpen = false;
+let contrastToggle = false;
+const scaleFactor = 1/20
+
+function moveBackground(event) {
+    const shapes = document.querySelectorAll(".shape");
+    const x = event.clientX * scaleFactor;
+    const y = event.clientY * scaleFactor;
+    console.log('hello')
+
+    for (let i = 0; i < shapes.length; ++i) {
+        const isOdd = i % 2 !== 0;
+        const oddInteger = isOdd ? -1 : 1;
+        shapes[i].style.transform = `translate(${x * oddInteger}px, ${y * oddInteger}px)`
+    }
+}
+
+
+function toggleContrast() {
+    contrastToggle = !contrastToggle
+    if (contrastToggle) {
+    document.body.classList += " dark-theme"
+    }
+    else {
+        document.body.classList.remove("dark-theme")
+    }
+
+}
+
+
+
 function contact(event) {
     event.preventDefault();
     const loading = document.querySelector('.modal__overlay--loading');
@@ -27,10 +58,22 @@ function contact(event) {
                 "The email service is temporarily unavailable. Please contact me directly through gmail.com on joseph8778@gmail.com"
             )
         })
+    }
 
 
-setTimeout(() => {
+function toggleModal() {
+    if (isModalOpen) {
+        isModalOpen = !isModalOpen
+        return document.body.classList.remove("modal--open")
+    }
+    isModalOpen = !isModalOpen;
+    // toggle modal
+    window.scrollTo({
+        top: 0,
 
+        behavior: 'smooth'
+    })
 
-        }, 1000)
+    document.body.classList += " modal--open"
 }
+

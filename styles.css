@@ -8,6 +8,10 @@
     font-family: 'Roboto', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 #personal-logo {
     filter: invert(1);
     height: 50px;
@@ -26,7 +30,7 @@ p {
 
 a {
     text-decoration: none;
-
+    
 }
 
 button {
@@ -82,7 +86,9 @@ input:focus, textarea:focus {
 
 section {
     background-color: rgb(245, 245, 245);
+    transition: all 300ms ease;
 }
+
 
 .container {
     padding: 50px 0;
@@ -135,6 +141,51 @@ transition: all 300ms ease;
     width: 100%;
 }
 
+nav,
+.scroll,
+.header {
+opacity: 1;
+visibility: visible;
+transition: all 300ms 500ms;
+}
+
+.modal--open nav,
+.modal--open .scroll,
+.modal--open .header {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 300ms;
+}
+
+.dark-theme .title,
+.dark-theme .section__title,
+.dark-theme .section__sub-title,
+.dark-theme .nav__link--anchor,
+.dark-theme .fa-circle-half-stroke,
+.dark-theme .header__para,
+.dark-theme #personal-logo
+
+{
+    color: white;
+    filter: none
+}
+
+.dark-theme section {
+    background-color: #242424;
+}
+
+.dark-theme .scroll__icon
+ {
+border-color: white;}
+.dark-theme .scroll__icon:after,
+.dark-theme .link__hover-effect--black::after
+ {
+background-color: white;}
+
+.dark-theme .mail__btn {
+    background-color: white;
+    color: #242424;
+}
 
 /* 
 
@@ -188,6 +239,7 @@ Landing Page
     height: 70px;
     font-size: 32px;
     border-radius: 50%;
+    border: solid;
     background-color: #242424;
     display: flex;
     align-items: center;
@@ -196,6 +248,8 @@ Landing Page
     right: 0;
     bottom: 0;
     margin: 0 24px 24px 0;
+    scroll-behavior: smooth;
+    z-index: 10;
 }
 
 .scroll {
@@ -206,6 +260,7 @@ Landing Page
 }
 
 .scroll__icon {
+    
     width: 20px;
     height: 30px;
     border: 2px solid #242424;
@@ -282,11 +337,29 @@ MODAL ---------------------------------------------------------
     width: 90%;
     max-width: 1100px;
     height: 500px;
-    box-shadow: 0 20px 80px 0 rgb(0, 0, 0, .55);
     border-radius: 20px;
     overflow: hidden;
     display: flex;
+    visibility: hidden;;
+    z-index: -1;
+    transition: visibility 1s, z-index 1s, box-shadow 0.5s ease;
 }
+
+.modal--open .modal{
+    z-index: 60;
+    box-shadow: 0 20px 80px 0 rgb(0, 0, 0, .55);
+    visibility: visible;
+}
+
+.modal--open .modal__about,
+.modal--open .modal__contact
+{
+    transform: translateX(0%)
+}
+
+
+
+
 
 .modal__half {
     width: 50%;
@@ -295,11 +368,12 @@ MODAL ---------------------------------------------------------
     flex-direction: column;
     justify-content: center;
     position: relative;
+    transition: all 300ms ease-in;
 }
 
 .modal__about {
     background-color: rgb(245, 245, 245);
-
+    transform: translateX(-110%);
 }
 
 .modal__languages {
@@ -342,7 +416,7 @@ MODAL ---------------------------------------------------------
 .modal__contact {
     background-color: #242424;
     color: white;
-    
+    transform: translateX(110%);
 }
 
 .modal__title {
@@ -393,7 +467,7 @@ color: #0000FF;
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     z-index: -1;
@@ -415,6 +489,7 @@ padding: 28px;
 
 .modal__overlay--visible {
     z-index: 1;
+    display: flex;
 }
 
 .modal__exit {
@@ -557,4 +632,49 @@ footer {
 
 .footer__social--link, .footer__copyright {
 color: white;
+}
+
+/* 
+SHAPES
+*/
+
+.shape {
+    position: fixed;
+}
+
+.shape--0 {
+    top: 15vh;
+    left: 5vw;
+}
+.shape--1 {
+    top: 15vh;
+    left: 50vw;
+}
+.shape--2 {
+    top: 15vh;
+    left: 80vw;
+}
+.shape--3 {
+    top: 50vh;
+    left: 5vw;
+}
+.shape--4 {
+    top: 50vh;
+    left: 50vw;
+}
+.shape--5 {
+    top: 50vh;
+    left: 80vw;
+}
+.shape--6 {
+    top: 80vh;
+    left: 5vw;
+}
+.shape--7 {
+    top: 80vh;
+    left: 50vw;
+}
+.shape--8 {
+    top: 80vh;
+    left: 80vw;
 }
